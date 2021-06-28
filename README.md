@@ -64,7 +64,7 @@ It has been developed targeted towards Chrome Browsers desktops.
 ``` 
     $ npm install
 ```
-3.  Run the project to localhost:3000
+3.  Run the project to localhost:3006/csgo-app
 ``` 
     $ npm run start
 ```
