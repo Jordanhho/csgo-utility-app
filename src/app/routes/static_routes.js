@@ -1,14 +1,12 @@
-const root_url = "/csgo-app";
-
 const staticRoutes = {
     main: {
         personal_website: "/",
-        home: root_url,
-        maps: `${root_url}/maps`,
-        mapWithUtils: `${root_url}/map/:map_id/:util_id?`,
-        mapTemplate: (map_id) => `${root_url}/map/${map_id}`,
-        utilTemplate: (map_id, util_id) => `${root_url}/map/${map_id}/${util_id}`,
-        utilDetail: `${root_url}/map/:map_id/:util_id`,
+        home: "/",
+        maps: `/maps`,
+        mapWithUtils: `/map/:map_id/:util_id?`,
+        mapTemplate: (map_id) => `/map/${map_id}`,
+        utilTemplate: (map_id, util_id) => `/map/${map_id}/${util_id}`,
+        utilDetail: `/map/:map_id/:util_id`,
     },
     member: {
         home: "/member",
