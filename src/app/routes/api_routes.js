@@ -1,7 +1,7 @@
 //switch between production and development to the reactjs server
 export const API_URL = ((process.env.NODE_ENV === "development") 
-    ? "http://localhost:8080"
-    : "https://jordanho.ca"
+    ? "http://localhost:8081"
+    : "https://csgo-app.jordanho.ca"
 );
 
 export const authApiRoutes = {
