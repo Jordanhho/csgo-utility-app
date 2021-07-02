@@ -18,9 +18,11 @@ const TitleBanner = (props) => {
                     alignItems="center"
                     justify="center"
                 >
-                    <Typography variant="h3" color="primary">
-                        {props.title}
-                    </Typography>
+                    <Grid item xs={12} align="center">
+                        <Typography variant="h4" color="primary">
+                            {props.title}
+                        </Typography>
+                    </Grid>
                 </Grid>
             </Box>
         </div>

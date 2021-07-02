@@ -19,7 +19,7 @@ const VERIFY_LOGIN_SESSION_TIMEOUT_MS = 300; //300 ms for verifying login sessio
 //sign up for user
 export const userSignUpApi = async (data) => {
     try {
-        let res = await axios.post(API_URL + authApiRoutes.SIGNUP, data);
+        let res = await axios.post(API_URL + authApiRoutes.CSGO_APP_SIGNUP, data);
         return handleApi(res);
     } catch (err) {
         return {
@@ -31,7 +31,7 @@ export const userSignUpApi = async (data) => {
 
 export const activateAccountApi = async (data) => {
     try {
-        let res = await axios.post(API_URL + authApiRoutes.ACTIVATE_ACCOUNT, data);
+        let res = await axios.post(API_URL + authApiRoutes.CSGO_APP_ACTIVATE_ACCOUNT, data);
         return handleApi(res);
     } catch (err) {
         return {
@@ -46,7 +46,7 @@ export const activateAccountApi = async (data) => {
 // user login API to validate the credential
 export const userLoginApi = async (data) => {
     try {
-        let res = await axios.post(API_URL + authApiRoutes.LOGIN, data);
+        let res = await axios.post(API_URL + authApiRoutes.CSGO_APP_LOGIN, data);
         return handleApi(res);
     } catch (err) {
         return {
@@ -58,7 +58,7 @@ export const userLoginApi = async (data) => {
 
 export const userLogoutApi = async () => {
     try {
-        let res = await axios.post(API_URL + authApiRoutes.LOGOUT);
+        let res = await axios.post(API_URL + authApiRoutes.CSGO_APP_LOGOUT);
         return handleApi(res);
     } catch (err) {
         return {
@@ -85,7 +85,7 @@ export const verifyLoginSessionApi = async () => {
     try {
         let result = await axios({
                 method: "post",
-                url: (API_URL + authApiRoutes.VERIFY_LOGIN_SESSION),
+                url: (API_URL + authApiRoutes.CSGO_APP_VERIFY_LOGIN_SESSION),
                 timeout: VERIFY_LOGIN_SESSION_TIMEOUT_MS
         });
         return handleApi(result);
@@ -101,7 +101,7 @@ export const verifyLoginSessionApi = async () => {
 
 export const sendResetPasswordEmailApi = async (email) => {
     try {
-        let res = await axios.post(API_URL + authApiRoutes.SEND_RESET_PASSWORD_EMAIL, email);
+        let res = await axios.post(API_URL + authApiRoutes.CSGO_APP_SEND_RESET_PASSWORD_EMAIL, email);
         return handleApi(res);
     } catch (err) {
         return {
@@ -114,7 +114,7 @@ export const sendResetPasswordEmailApi = async (email) => {
 // check if reset password link is valid
 export const verifyResetPasswordCodeApi = async (verification_code) => {
     try {
-        let res = await axios.post(API_URL + authApiRoutes.VERIFY_RESET_PASSWORD_CODE, verification_code);
+        let res = await axios.post(API_URL + authApiRoutes.CSGO_APP_VERIFY_RESET_PASSWORD_CODE, verification_code);
         return handleApi(res);
     } catch (err) {
         return {
@@ -127,7 +127,7 @@ export const verifyResetPasswordCodeApi = async (verification_code) => {
 // send request to reset password with email 
 export const resetPasswordApi = async (data) => {
     try {
-        let res = await axios.post(API_URL + authApiRoutes.RESET_PASSWORD, data);
+        let res = await axios.post(API_URL + authApiRoutes.CSGO_APP_RESET_PASSWORD, data);
         return handleApi(res);
     } catch (err) {
         return {

@@ -5,16 +5,16 @@ export const API_URL = ((process.env.NODE_ENV === "development")
 );
 
 export const authApiRoutes = {
-    LOGIN: "/api/auth/login",
-    VERIFY_LOGIN_SESSION: "/api/auth/verify-login-session",
-    LOGOUT: "/api/auth/logout",
+    CSGO_APP_LOGIN: "/api/csgo-app/login",
+    CSGO_APP_VERIFY_LOGIN_SESSION: "/api/csgo-app/auth/verify-login-session",
+    CSGO_APP_LOGOUT: "/api/auth/logout",
 
-    SIGNUP: "/api/auth/signup",
-    ACTIVATE_ACCOUNT: "/api/auth/activate-account",
+    CSGO_APP_SIGNUP: "/api/csgo-app/auth/signup",
+    CSGO_APP_ACTIVATE_ACCOUNT: "/api/csgo-app/auth/activate-account",
 
-    SEND_RESET_PASSWORD_EMAIL: "/api/auth/send-reset-password-email",
-    VERIFY_RESET_PASSWORD_CODE: "/api/auth/verify-reset-password-code",
-    RESET_PASSWORD: "/api/auth/reset-password",
+    CSGO_APP_SEND_RESET_PASSWORD_EMAIL: "/api/csgo-app/auth/send-reset-password-email",
+    CSGO_APP_VERIFY_RESET_PASSWORD_CODE: "/api/csgo-app/auth/verify-reset-password-code",
+    CSGO_APP_RESET_PASSWORD: "/api/csgo-app/auth/reset-password",
 }
 
 export const publicApiRoutes = {

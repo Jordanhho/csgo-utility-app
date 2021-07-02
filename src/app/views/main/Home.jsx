@@ -28,6 +28,9 @@ import useStyles from "./styles";
 function Home() {
     const pageTitle = "Home";
 
+    const xsSize = 12;
+    const mdSize = 6;
+
     const classes = useStyles();
 
     const [homeData, setData] = useState([]);
@@ -76,135 +79,136 @@ function Home() {
             </div>
         );
     }
-   
-    return (
-        <Container>
-            <TitleBanner title={"Csgo Utility App"}/>
-            <Box p={5}>
-
-                <Grid
-                    container
-                    justify="center"
-                    alignItems="center"
-                    spacing={3}
-                >
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>
-                            <Box p={5} className={classes.center}>
-                                <Grid item xs={12}>
-                                    <Typography variant="h4" color="primary">
-                                        Welcome to the CSGO Utility App
-                                    </Typography>
-                                    <img
-                                        src={UtilityAppImg}
-                                        alt="csgo util app"
-                                    />
-                                </Grid>
-                                <br />
-                                <Grid item xs={12}>
-                                    <Typography variant="body1" gutterBottom>
-                                        This project is to assist using csgo's utility by creating a library that can be used privately by teams or publicly viewed.
-                                    </Typography>
-                                </Grid>
-                            </Box>
-                        </Paper>
+    else {
+        return (
+            <Container>
+                <TitleBanner title={"Csgo Utility App"}/>
+                <Box p={2}>
+                    <Grid
+                        container
+                        justify="center"
+                        alignItems="center"
+                        spacing={3}
+                    >
+                        <Grid item xs={xsSize} md={mdSize}>
+                            <Paper className={classes.paper}>
+                                <Box p={3} className={classes.center}>
+                                    <Grid item xs={12}>
+                                        <Typography variant="h4" color="primary">
+                                            Welcome to the CSGO Utility App
+                                        </Typography>
+                                        <img
+                                            src={UtilityAppImg}
+                                            alt="csgo util app"
+                                            className={classes.csgoAppLogo}
+                                        />
+                                    </Grid>
+                                    <br />
+                                    <Grid item xs={12}>
+                                        <Typography variant="body1" gutterBottom>
+                                            This project is to assist using csgo's utility by creating a library that can be used privately by teams or publicly viewed.
+                                        </Typography>
+                                    </Grid>
+                                </Box>
+                            </Paper>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid
-                    container
-                    justify="center"
-                    alignItems="center"
-                    spacing={3}
-                >
-                    <Grid item xs={6}>
+                    <Grid
+                        container
+                        justify="center"
+                        alignItems="center"
+                        spacing={3}
+                    >
+                        <Grid item xs={xsSize} md={mdSize}>
+                            <Paper className={classes.paper}>
+                                <Box p={3} className={classes.center}>
+                                    <Grid item xs={12}>
+                                        <Typography variant="h4" color="primary" className={classes.underline}>
+                                            Live Demo for public
+                                        </Typography>
+                                    </Grid>
+                                    <br />
+                                    <br />
+                                    <Grid item xs={12} align="center">
+                                        <Typography variant="body1" gutterBottom>
+                                            Currently supported maps include: 
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} align="center">
+                                        <ul className={classes.ul_none_style}>
+                                            {homeData.supported_maps.map((map_name, index) => (
+                                                <li key={index}>
+                                                    <Chip label={map_name} className={classes.chip} variant="outlined" color="primary" />
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </Grid>
+                                    <br />
+                                    <Grid item xs={12} align="center">
+                                        <Button
+                                            variant="outlined"
+                                            color="primary"
+                                            href={staticRoutes.main.maps}
+                                            className={classes.button}
+                                        >
+                                            View Maps
+                                        </Button>
+                                    </Grid>
+                                </Box>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        justify="center"
+                        alignItems="center"
+                        spacing={3}
+                    >
+                    <Grid item xs={xsSize} md={mdSize}>
                         <Paper className={classes.paper}>
-                            <Box p={5} className={classes.center}>
+                            <Box p={3} className={classes.center}>
                                 <Grid item xs={12}>
                                     <Typography variant="h4" color="primary" className={classes.underline}>
-                                        Live Demo for public
+                                        Github
                                     </Typography>
                                 </Grid>
                                 <br />
-                                <br />
-                                <Grid item xs={12} align="center">
-                                    <Typography variant="body1" gutterBottom>
-                                        Currently supported maps include: 
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} align="center">
-                                    <ul className={classes.ul_none_style}>
-                                        {homeData.supported_maps.map((map_name, index) => (
-                                            <li key={index}>
-                                                <Chip label={map_name} className={classes.chip} variant="outlined" color="primary" />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </Grid>
-                                <br />
-                                <Grid item xs={12} align="center">
-                                    <Button
-                                        variant="outlined"
-                                        color="primary"
-                                        href={staticRoutes.main.maps}
-                                        className={classes.button}
-                                    >
-                                        View Maps
-                                    </Button>
+                                <Grid item xs={12}>
+
+                                    <div className={classes.iconInlineAlign}>
+                                        <span className={classes.iconPadding}>
+                                            <IconButton
+                                                color="primary"
+                                                aria-label="Github"
+                                                onClick={() => window.open(homeData.github_url)}
+                                                className={classes.iconInline}
+                                            >
+                                                <GitHubIcon
+                                                    fontSize="large"
+                                                    color="primary"
+                                                    className={classes.iconInline}
+                                                />
+                                            </IconButton>
+                                        </span>
+
+                                        <Typography variant="h6">
+                                            <Link
+                                                href="#"
+                                                color="inherit"
+                                                onClick={() => window.open(homeData.github_url)}
+                                            >
+                                                CSGO Utility App
+                                            </Link>
+                                        </Typography>
+                                    </div>
                                 </Grid>
                             </Box>
                         </Paper>
                     </Grid>
-                </Grid>
-                <Grid
-                    container
-                    justify="center"
-                    alignItems="center"
-                    spacing={3}
-                >
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-                        <Box p={5} className={classes.center}>
-                            <Grid item xs={12}>
-                                <Typography variant="h4" color="primary" className={classes.underline}>
-                                    Github
-                                </Typography>
-                            </Grid>
-                            <br />
-                            <Grid item xs={12}>
-
-                                <div className={classes.iconInlineAlign}>
-                                    <span className={classes.iconPadding}>
-                                        <IconButton
-                                            color="primary"
-                                            aria-label="Github"
-                                            onClick={() => window.open(homeData.github_url)}
-                                            className={classes.iconInline}
-                                        >
-                                            <GitHubIcon
-                                                fontSize="large"
-                                                color="primary"
-                                                className={classes.iconInline}
-                                            />
-                                        </IconButton>
-                                    </span>
-
-                                    <Typography variant="h6">
-                                        <Link
-                                            href="#"
-                                            color="inherit"
-                                            onClick={() => window.open(homeData.github_url)}
-                                        >
-                                            CSGO Utility App
-                                        </Link>
-                                    </Typography>
-                                </div>
-                            </Grid>
-                        </Box>
-                    </Paper>
-                </Grid>
-                </Grid>
-            </Box>
-        </Container>
-    );
+                    </Grid>
+                </Box>
+            </Container>
+        );
+   }
 }
 export default Home;
