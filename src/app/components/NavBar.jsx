@@ -75,11 +75,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#303030 !important"
     },
     locationLabel: {
-        marginLeft: "10px",
+        margin: "auto",
         [theme.breakpoints.up('md')]: { //hide location label if screen is above xs
             display: 'none',
         },
         color: "white"
+    },
+    mobileMenu: {
+        display: "inherit",
+        zIndex: "999",
+        position: "absolute",
+        left: "50px"
     },
     menuButton: {
         left: "5px",
@@ -166,16 +172,7 @@ function NavBar(props) {
         dispatch(userLogoutAsync());
         handleMenuClose();
     }
-    function getCurrentPageName() {
-        let currPageName = ""
-        for (let item of props.navList) {
-            if (item.to === props.location) {
-                currPageName = item.name
-            }
-        }
-        return currPageName
-    }
-
+    
     const list = (anchor) => (
         <div
             className={classes.fullList}
@@ -248,18 +245,17 @@ function NavBar(props) {
                             />
                         </IconButton>
                     </Link>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="menu"
-                        onClick={toggleDrawer(true)}
-                    >
-                        <MenuIcon color="primary" />
-                    </IconButton>
-                    <Typography variant="h5" className={classes.locationLabel}>
-                        {getCurrentPageName()}
-                    </Typography>
+                    <div className={classes.mobileMenu}>
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="menu"
+                            onClick={toggleDrawer(true)}
+                        >
+                            <MenuIcon color="primary" />
+                        </IconButton>
+                    </div>
 
                     <Tabs
                         className={classes.tabs}
