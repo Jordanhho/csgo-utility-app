@@ -20,6 +20,15 @@ const useStyles = makeStyles((theme) => (
             position: "absolute",
             right: "60px"
         },
+        displayMapSize: {
+            maxWidth: "100%",
+            maxHeight: "100%",
+            width: "500px",
+        },
+        csgoAppLogo: {
+            maxWidth: "100%",
+            maxHeight: "100%"
+        },
         util_icon: {
             borderRadius: "50%",
             border: "2px solid " + theme.palette.primary.main,
@@ -48,37 +57,11 @@ const useStyles = makeStyles((theme) => (
             }
         },
         chip: {
-            color: "white !important"
-        },
-        homeIcon: {
-            maxWidth: "25px",
-            maxheight: "35px"
-        },
-        appbar: {
-            borderBottom: "1px solid " + theme.palette.primary.main,
-            borderColor: "skyblue",
-            backgroundColor: "#303030"
-        },
-        personlLogoBtn: {
-            cursor: "pointer",
-            position: "absolute",
-            padding: "6px",
-            top: "0px",
-            left: "0px",
-            zIndex: "999"
-        },
-        loginBtn: {
-            position: "absolute",
-            
-            top: "15px",
-            right: "20px",
-            zIndex: "999"
+            color: "white !important",
+            maxWidth: "100%"
         },
         underline: {
             borderBottom: "1px solid " + theme.palette.primary.main,
-        },
-        tab: {
-            flexGrow: 1,
         },
         link: {
             cursor: "pointer"

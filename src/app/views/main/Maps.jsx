@@ -24,6 +24,9 @@ function Maps() {
 
     const classes = useStyles();
 
+    const xsSize = 12;
+    const mdSize = 6;
+
     const [mapsData, setData] = useState([]);
 
     const [loaded, setLoaded] = useState(null);
@@ -74,7 +77,7 @@ function Maps() {
     return (
         <Container>
             <TitleBanner title={"Maps"} />
-            <Box p={5}>
+            <Box p={2}>
                 <Grid
                     container
                     justify="center"
@@ -83,9 +86,9 @@ function Maps() {
                     direction="column"
                 >
 
-                    <Grid item xs={6}>
+                    <Grid item xs={xsSize} md={mdSize}>
                         <Paper className={classes.paper}>
-                            <Box p={5} className={classes.center}>
+                            <Box p={3} className={classes.center}>
                                 <Grid item xs={12}>
                                     <Typography variant="h4" color="primary">
                                         Note!
@@ -100,20 +103,17 @@ function Maps() {
                             </Box>
                         </Paper>
                     </Grid>
-                    <br/>
 
-                    <Grid item xs={6}>
-
+                    <Grid item xs={xsSize} md={mdSize}>
                         <Grid
                             container
                             direction="column"
                             justify="center"
                             alignItems="center"
-                            spacing={10}
                         >
                             {mapsData.maps.map((mapDetails, index) => (
                                 <Paper className={classes.paper} key={index}>
-                                    <Box p={5} className={classes.center}>
+                                    <Box p={3} className={classes.center}>
                                         <Grid item xs={12}>
                                             <Typography variant="h4" color="primary">
                                                 {mapDetails.map_name}
@@ -121,8 +121,8 @@ function Maps() {
                                             <Button href={staticRoutes.main.mapTemplate(mapDetails.map_id)} className={classes.map_link} key={index}>
                                                 <img
                                                     src={mapDetails.cloudfront_map_url}
-                                                    width={500}
-                                                    height={500}
+                                                    className={classes.displayMapSize}
+                                               
                                                     alt={mapDetails.map_name}
                                                 />
                                             </Button>

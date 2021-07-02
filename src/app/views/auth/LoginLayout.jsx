@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
@@ -20,8 +21,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 function LoginLayout() {
     const classes = useStyles();
+    const authObj = useSelector(state => state.auth);
     return (
         <div>
             <Button 
@@ -34,6 +37,9 @@ function LoginLayout() {
                 Back Home
             </Button>
             <Switch>
+                {(authObj.isAuthenticated) && (
+                    <Redirect to={staticRoutes.main.home} />
+                )}
                 <Route
                     path={staticRoutes.member.activateAccount}
                     component={ActivateAccount}
@@ -49,7 +55,7 @@ function LoginLayout() {
                 <Route
                     path={staticRoutes.member.login}
                     component={Login}
-                />
+                />   
             </Switch>
         </div>
     );

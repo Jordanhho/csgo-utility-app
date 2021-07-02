@@ -23,6 +23,9 @@ import {
 import useStyles from "./styles";
 
 function MapDetail() {
+    const xsSize = 12;
+    const mdSize = 10;
+
     const utilDetailRef = React.useRef(null)
     const { map_id, util_id } = useParams();
     const pageTitle = "Map " + map_id;
@@ -106,7 +109,7 @@ function MapDetail() {
                 spacing={3}
                 direction="column"
             >
-                <Grid item xs={10}>
+                <Grid item xs={xsSize} md={mdSize}>
                     <Paper className={classes.paper}>
                         <Box p={5} className={classes.center}>
                             <Grid item xs={12}>
@@ -141,7 +144,7 @@ function MapDetail() {
                     alignItems="center"
                     spacing={6}
                 >
-                    <Grid item xs={6}>
+                    <Grid item xs={xsSize} md={mdSize}>
                         <Paper className={classes.paper} >
                             <Box p={5} className={classes.center} ref={utilDetailRef}>
                                 <UtilDetail 
