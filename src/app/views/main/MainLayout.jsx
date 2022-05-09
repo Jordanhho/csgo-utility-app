@@ -1,51 +1,62 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import staticRoutes from "../../routes/static_routes";
+import staticRoutes from "Routes/static_routes";
 
 import useStyles from "./styles";
 
-import Home from "./Home";
-import Maps from "./Maps";
-import MapDetail from "./MapDetail";
+import Home from "Main_view/Home";
+import Maps from "Main_view/Maps";
+import MapDetail from "Main_view/MapDetail";
 
-import NavBar from "../../components/NavBar";
+import NavBar from "Components/NavBar";
 
 function MainLayout() {
     const classes = useStyles();
+    
+    const currPaths = staticRoutes.main;
 
     const navList = [
         {
-            to: staticRoutes.main.home,
-            name: "Home"
+            to: currPaths.abs,
+            path: currPaths.relLink,
+            name: currPaths.name,
+            element: (
+                <Home />
+            )
         },
         {
-            to: staticRoutes.main.maps,
-            name: "Maps"
-        }
+            to: currPaths.maps.abs,
+            path: currPaths.maps.relLink,
+            name: currPaths.maps.name,
+            element: (
+                <Maps />
+            )
+        },
     ];
 
     return (
         <div className={classes.root}>   
             <NavBar
                 navList={navList}
-                personal_website={staticRoutes.main.home}
-                login={staticRoutes.member.login}
+                personal_website={staticRoutes.main.relLink}
+                login={staticRoutes.member.login.abs}
             />
-            <Switch>
+            <Routes>
+                {navList.map((nav, index) => {
+                    return (
+                        <Route
+                            key={`main-route-${index}`}
+                            path={nav.path}
+                            element={nav.element}
+                        />
+                    )
+                })}
                 <Route
-                    exact path={staticRoutes.main.home}
-                    component={Home}
+                    path={currPaths.mapDetail.relLink}
+                    element={<MapDetail/>}
                 />
-                <Route
-                    path={staticRoutes.main.maps}
-                    component={Maps}
-                />
-                <Route
-                    path={staticRoutes.main.mapWithUtils}
-                    component={MapDetail}
-                />
-            </Switch>
+            </Routes>
         </div>
     )
 }

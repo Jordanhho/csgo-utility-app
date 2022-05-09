@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,24 +10,24 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 
-import staticRoutes from "../../routes/static_routes";
+import staticRoutes from "Routes/static_routes";
 
 import useStyles from "./styles";
-import useInput from "../../custom_hooks/useInput";
-import useInputPass from "../../custom_hooks/useInputPass";
+import useInput from "Custom_hooks/useInput";
+import useInputPass from "Custom_hooks/useInputPass";
 
 import {
     userSignUpApi
-} from "../../services/auth_api";
+} from "Services/auth_api";
 
 import ReCAPTCHA from "react-google-recaptcha";
-import { getRecaptchaInvisiblePublicKey } from "../../config/google_config";
+import { getRecaptchaInvisiblePublicKey } from "Config/google_config";
 
 function SiguUp() {
     const pageTitle = "Sign Up";
     const classes = useStyles();
     const recaptchaRef = React.createRef();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [createAccErr, setCreateAccErr] = useState(false);
     const [confirmPasswordNotMatch, setConfirmPasswordNotMatch] = useState(false);
@@ -62,7 +62,7 @@ function SiguUp() {
             setCreateAccErr(false);
 
             //redirect to activation page
-            history.push(staticRoutes.member.activateAccountTemplate(email.value));
+            navigate(staticRoutes.member.login.activateAccountTemplate(email.value));
         }
         else {
             setCreateAccErr(true);
@@ -156,7 +156,7 @@ function SiguUp() {
           
                                 <Grid container justify="center">
                                     <Grid item>
-                                        <Link href={staticRoutes.member.login} variant="body2">
+                                        <Link href={staticRoutes.member.login.abs} variant="body2">
                                             Already have an account? Sign in
                                         </Link>
                                     </Grid>

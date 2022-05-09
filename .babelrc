@@ -1,0 +1,27 @@
+{
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./"
+                ],
+                "alias": {
+                    "Components": "./src/app/components",
+                    "App": "./src/app/",
+                    "Auth_view": "./src/app/views/auth",
+                    "Main_view": "./src/app/views/main",
+                    "Views": "./src/app/views",
+                    "Routes": "./src/app/routes",
+                    "Redux": "./src/app/redux",
+                    "Custom_hooks": "./src/app/custom_hooks",
+                    "Config": "./src/app/config",
+                    "Assets": "./src/app/assets",
+                    "Services": "./src/app/services",
+                    "Theme": "./src/app/theme",
+                    "Utility": "./src/app/utility"
+                }
+            }
+        ]
+    ]
+}

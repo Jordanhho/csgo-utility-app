@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useHistory, Route  } from "react-router-dom";
-
+import { useParams, useNavigate, Route, Routes } from "react-router-dom";
 
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -8,17 +7,17 @@ import Container from '@material-ui/core/Grid';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import Loader from "../../components/Loader";
+import UtilDetail from "Main_view/UtilDetail";
+import MapStage from "Main_view/MapStage";
 
-import MapStage from "./MapStage";
+import Loader from "Components/Loader";
+import TitleBanner from "Components/TitleBanner";
 
-import TitleBanner from "../../components/TitleBanner";
-import staticRoutes from "../../routes/static_routes";
-import UtilDetail from "./UtilDetail";
+import staticRoutes from "Routes/static_routes";
 
 import {
     getPublicMapDetailApi
-} from "../../services/public_api";
+} from "Services/public_api";
 
 import useStyles from "./styles";
 
@@ -29,7 +28,7 @@ function MapDetail() {
     const utilDetailRef = React.useRef(null)
     const { map_id, util_id } = useParams();
     const pageTitle = "Map " + map_id;
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const classes = useStyles();
     const [mapDetail, setData] = useState({});
@@ -37,7 +36,7 @@ function MapDetail() {
 
     async function handleUtilOnClick(util_id) {
         //cahnge to util id path
-        history.push(staticRoutes.main.utilTemplate(map_id, util_id));
+        navigate(staticRoutes.main.mapDetail.utilTemplate(map_id, util_id));
 
         //scroll to section
         utilDetailRef.current.scrollIntoView({ behavior: 'smooth', block: "end"});
@@ -59,14 +58,14 @@ function MapDetail() {
         const mapResult = await getPublicMapDetailApi({map_id: map_id});
 
         //load map result
-        if (mapResult.data) {
+        if (!mapResult.error) {
             setData(mapResult.data);
             setLoaded(true);
         }
         else {
             setLoaded(false);
         }
-    }, [map_id,]);
+    }, [map_id]);
 
     useEffect(() => {
         document.title = pageTitle;
@@ -99,6 +98,7 @@ function MapDetail() {
             </div>
         );
     }
+
     return (
         <Container>
             <TitleBanner title={mapDetail.map_name + " Utilities"} />
@@ -135,27 +135,30 @@ function MapDetail() {
                 </Grid>
             </Grid>
             
-            <Route
-                path={staticRoutes.main.utilDetail}
-            >
-                <Grid
-                    container
-                    justify="center"
-                    alignItems="center"
-                    spacing={6}
+            <Routes>
+                <Route
+                    path={staticRoutes.main.mapDetail.utilDetail.relLink}
+                    element={
+                        <Grid
+                            container
+                            justify="center"
+                            alignItems="center"
+                            spacing={6}
+                        >
+                            <Grid item xs={xsSize} md={mdSize}>
+                                <Paper className={classes.paper} >
+                                    <Box p={5} className={classes.center} ref={utilDetailRef}>
+                                        <UtilDetail
+                                            utilIcons={mapDetail.util_icons}
+                                        />
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                    }
                 >
-                    <Grid item xs={xsSize} md={mdSize}>
-                        <Paper className={classes.paper} >
-                            <Box p={5} className={classes.center} ref={utilDetailRef}>
-                                <UtilDetail 
-                                    utilIcons={mapDetail.util_icons}
-                                />
-                            </Box>
-                        </Paper>
-                    </Grid>
-                </Grid>
-            </Route>
-    
+                </Route>
+            </Routes>
         </Container>
     );
 }

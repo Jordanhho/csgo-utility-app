@@ -1,16 +1,15 @@
 import React from 'react';
 import { CookiesProvider } from "react-cookie";
 
-import theme from './theme/theme';
+import theme from 'Theme/theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import {
-    Route,
     BrowserRouter
 } from "react-router-dom";
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import AppLayout from "./views/AppLayout";
+import AppLayout from "Views/AppLayout";
 
 //for react image gallery
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -28,7 +27,7 @@ function App() {
             <BrowserRouter>
                 <MuiThemeProvider theme={theme}>
                     <CssBaseline/>
-                    <Route path="/" component={AppLayout} />
+                    <AppLayout/>
                 </MuiThemeProvider>
             </BrowserRouter>
         </CookiesProvider>

@@ -13,25 +13,25 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 
-import Loader from "../../components/Loader";
+import Loader from "Components/Loader";
 
-import staticRoutes from "../../routes/static_routes";
+import staticRoutes from "Routes/static_routes";
 
-import { userLoginAsync } from '../../redux/asyncActions/authAsyncActions';
+import { userLoginAsync } from 'Redux/asyncActions/authAsyncActions';
 
 import { 
     getLoginSettingsApi
-} from "../../services/public_api";
+} from "Services/public_api";
 
 import useStyles from "./styles";
-import useInput from "../../custom_hooks/useInput";
-import useInputPass from "../../custom_hooks/useInputPass";
+import useInput from "Custom_hooks/useInput";
+import useInputPass from "Custom_hooks/useInputPass";
 
 import ReCAPTCHA from "react-google-recaptcha";
-import { getRecaptchaInvisiblePublicKey } from "../../config/google_config";
+import { getRecaptchaInvisiblePublicKey } from "Config/google_config";
 
 function Login() {
-    const pageTitle = "Login";
+    const pageTitle = staticRoutes.member.name;
     const classes = useStyles();
     const recaptchaRef = React.createRef();
 
@@ -64,19 +64,19 @@ function Login() {
 
     const fetchData = useCallback(async () => {
         const result = await getLoginSettingsApi();
-        if (result.error) {
-            setLoaded(false);
-        }
-        else {
+        if (!result.error) {
             setData(result.data);
             setLoaded(true);
+        }
+        else {
+            setLoaded(false);
         }
     }, []);
 
     useEffect(() => {
         document.title = pageTitle;
         fetchData();
-    }, [fetchData]);
+    }, [fetchData, pageTitle]);
 
     if (loaded === null) {
         return (
@@ -165,7 +165,7 @@ function Login() {
                                {(loginSettings.enable_change_password &&
                                     <Grid item xs>
                                         <Link
-                                            href={staticRoutes.member.forgotPassword}
+                                            href={staticRoutes.member.forgotPassword.abs}
                                             variant="body2"
                                             className={classes.link}
                                         >
@@ -177,7 +177,7 @@ function Login() {
                                 {(loginSettings.enable_new_accounts &&
                                     <Grid item>
                                         <Link
-                                            href={staticRoutes.member.signUp}
+                                            href={staticRoutes.member.signUp.abs}
                                             variant="body2"
                                             className={classes.link}
                                         >

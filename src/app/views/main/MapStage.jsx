@@ -1,11 +1,11 @@
 import React from "react";
 import { Stage, Layer, Image } from 'react-konva';
 import useImage from 'use-image';
-import UtilRender from "./UtilRender";
+import UtilRender from "Main_view/UtilRender";
 
 import {
     getUtilIconScaledSize
-} from "../../utility/map_scaling_utils";
+} from "Utility/map_scaling_utils";
 
 const MapStage = (props) => {
     const [mapImage] = useImage(props.mapImage);

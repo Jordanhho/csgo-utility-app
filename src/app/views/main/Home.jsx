@@ -12,21 +12,21 @@ import Link from '@material-ui/core/Link';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton from '@material-ui/core/IconButton';
 
-import Loader from "../../components/Loader";
-import TitleBanner from "../../components/TitleBanner";
-import staticRoutes from "../../routes/static_routes";
+import Loader from "Components/Loader";
+import TitleBanner from "Components/TitleBanner";
 
+import staticRoutes from "Routes/static_routes";
 
-import UtilityAppImg from "../../assets/img/utility_app_img.png";
+import UtilityAppImg from "Assets/img/utility_app_img.png";
 
 import {
     getHomeApi
-} from "../../services/public_api";
+} from "Services/public_api";
 
 import useStyles from "./styles";
 
 function Home() {
-    const pageTitle = "Home";
+    const pageTitle = staticRoutes.main.name;
 
     const xsSize = 12;
     const mdSize = 6;
@@ -39,20 +39,19 @@ function Home() {
 
     const fetchData = useCallback(async () => {
         const result = await getHomeApi();
-        if(result.error) {
-            setLoaded(false);
-        }
-        else {
+        if(!result.error) {
             setData(result.data);
             setLoaded(true);
         }
-        setLoaded(true);
+        else {
+            setLoaded(false);
+        }
     }, []);
     
     useEffect(() => {
         document.title = pageTitle;
         fetchData();
-    }, [fetchData]);
+    }, [fetchData, pageTitle]);
 
     if(loaded === null) {
         return (
@@ -148,7 +147,7 @@ function Home() {
                                         <Button
                                             variant="outlined"
                                             color="primary"
-                                            href={staticRoutes.main.maps}
+                                            href={staticRoutes.main.maps.abs}
                                             className={classes.button}
                                         >
                                             View Maps

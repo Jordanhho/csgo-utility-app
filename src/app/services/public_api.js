@@ -3,12 +3,11 @@ import axios from "axios";
 import {
     API_URL,
     publicApiRoutes
-} from "../routes/api_routes";
+} from "Routes/api_routes";
 
 import {
     handleApi
-} from "./api_utility";
-
+} from "Services/api_utility";
 
 export async function getHomeApi() {
     try {

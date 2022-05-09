@@ -11,20 +11,20 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-import staticRoutes from "../../routes/static_routes";
+import staticRoutes from "Routes/static_routes";
 
 import {
     activateAccountApi
-} from "../../services/auth_api";
+} from "Services/auth_api";
 
 import useStyles from "./styles";
-import useInput from "../../custom_hooks/useInput";
+import useInput from "Custom_hooks/useInput";
 
 import ReCAPTCHA from "react-google-recaptcha";
-import { getRecaptchaInvisiblePublicKey } from "../../config/google_config";
+import { getRecaptchaInvisiblePublicKey } from "Config/google_config";
 
 function ActivateAccount() {
-    const pageTitle = "Activate Account";
+    const pageTitle = staticRoutes.member.login.activateAccount;
     const recaptchaRef = React.createRef();
     const classes = useStyles();
 
@@ -95,7 +95,7 @@ function ActivateAccount() {
     useEffect(() => {
         document.title = pageTitle;
         loadActivationLink();
-    }, [loadActivationLink]);
+    }, [loadActivationLink, pageTitle]);
 
     async function handleActivateAccount(e) {
         e.preventDefault();
@@ -157,7 +157,7 @@ function ActivateAccount() {
 
                                     <Grid container justify="center">
                                         <Grid item>
-                                        <Link href={staticRoutes.member.login} variant="body2">
+                                        <Link href={staticRoutes.member.login.abs} variant="body2">
                                                 Already have an account? Login here
                                             </Link>
                                         </Grid>
@@ -191,7 +191,7 @@ function ActivateAccount() {
                                 <Grid container justify="center" spacing={2}>
                                     <Grid item xs={6} >
                                         <Button
-                                            href={staticRoutes.member.login}
+                                            href={staticRoutes.member.login.abs}
                                             fullWidth
                                             color="primary"
                                             startIcon={<ArrowBackIosIcon />}
@@ -219,7 +219,7 @@ function ActivateAccount() {
                                 <Grid container justify="center" spacing={2}>
                                     <Grid item xs={6} >
                                         <Button
-                                            href={staticRoutes.member.login}
+                                            href={staticRoutes.member.login.abs}
                                             fullWidth
                                             color="primary"
                                             startIcon={<ArrowBackIosIcon />}

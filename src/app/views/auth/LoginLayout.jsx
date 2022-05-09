@@ -1,18 +1,17 @@
 import React from "react";
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-import Login from "./Login";
-import SignUp from "./SignUp";
-import ActivateAccount from "./ActivateAccount";
+import Login from "Auth_view/Login";
+import SignUp from "Auth_view/SignUp";
+import ActivateAccount from "Auth_view/ActivateAccount";
+import ChangePassword from "Auth_view/ChangePassword";
 
-import ChangePassword from "./ChangePassword";
-
-import staticRoutes from "../../routes/static_routes";
+import staticRoutes from "Routes/static_routes";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -21,14 +20,54 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 function LoginLayout() {
     const classes = useStyles();
     const authObj = useSelector(state => state.auth);
+
+    const currPaths = staticRoutes.member.login;
+    const navList = [
+        {
+            to: currPaths.abs,
+            path: currPaths.relLink,
+            name: currPaths.name,
+            element: (
+                <Login />
+            )
+        },
+        {
+            to: currPaths.activateAccount.abs,
+            path: currPaths.activateAccount.relLink,
+            name: currPaths.activateAccount.name,
+            element: (
+                <ActivateAccount />
+            )
+        },
+        {
+            to: currPaths.signUp.abs,
+            path: currPaths.signUp.relLink,
+            name: currPaths.signUp.name,
+            element: (
+                <SignUp />
+            )
+        },
+        {
+            to: currPaths.forgotPassword.abs,
+            path: currPaths.forgotPassword.relLink,
+            name: currPaths.forgotPassword.name,
+            element: (
+                <ChangePassword />
+            )
+        },
+    ];
+
+    if (authObj.isAuthenticated) {
+        return (<Navigate to={staticRoutes.main.abs} />) ;
+    }
+
     return (
         <div>
             <Button 
-                href={staticRoutes.main.home}
+                href={staticRoutes.main.abs}
                 color="primary"
                 disableElevation
                 startIcon={<ArrowBackIosIcon />}
@@ -36,27 +75,17 @@ function LoginLayout() {
             >
                 Back Home
             </Button>
-            <Switch>
-                {(authObj.isAuthenticated) && (
-                    <Redirect to={staticRoutes.main.home} />
-                )}
-                <Route
-                    path={staticRoutes.member.activateAccount}
-                    component={ActivateAccount}
-                />
-                <Route
-                    path={staticRoutes.member.signUp}
-                    component={SignUp}
-                />
-                <Route
-                    path={staticRoutes.member.forgotPassword}
-                    component={ChangePassword}
-                />
-                <Route
-                    path={staticRoutes.member.login}
-                    component={Login}
-                />   
-            </Switch>
+            <Routes>
+                {navList.map((nav, index) => {
+                    return (
+                        <Route
+                            key={`login-route-${index}`}
+                            path={nav.path}
+                            element={nav.element}
+                        />
+                    )
+                })}
+            </Routes>
         </div>
     );
 }
