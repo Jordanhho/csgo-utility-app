@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate, Route, Routes, useLocation  } from "react-router-dom";
+import { useParams, useNavigate, Route, Routes } from "react-router-dom";
 
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -72,7 +72,6 @@ function MapDetail() {
         fetchData();
     }, [fetchData, pageTitle]);
 
-    const location = useLocation();
     if (loaded === null) {
         return (
             <Container>
