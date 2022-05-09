@@ -7,13 +7,13 @@ import {
     userLoginSuccess,
 
     userLogout
-} from "../actions/authActions";
+} from "Redux/actions/authActions";
 
 import { 
     verifyLoginSessionApi, 
     userLoginApi, 
     userLogoutApi
-} from '../../services/auth_api';
+} from 'Services/auth_api';
 
 // handle user login
 export const userLoginAsync = (data) => async dispatch => {

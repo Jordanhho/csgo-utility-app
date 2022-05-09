@@ -14,11 +14,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import ImageGallery from 'react-image-gallery';
 
-import Loader from "../../components/Loader";
+import Loader from "Components/Loader";
 
 import {
     getPublicUtilDetailApi
-} from "../../services/public_api";
+} from "Services/public_api";
 
 import useStyles from "./styles";
 

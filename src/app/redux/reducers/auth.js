@@ -5,7 +5,7 @@ import {
     USER_LOGIN_FAILURE,
     USER_LOGIN_SUCCESS, 
     USER_LOGOUT
-} from "../constants/authTypes";
+} from "Redux/constants/authTypes";
 
 // define initial state of auth reducer
 const initialState = {

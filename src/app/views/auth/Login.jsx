@@ -13,25 +13,25 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 
-import Loader from "../../components/Loader";
+import Loader from "Components/Loader";
 
-import staticRoutes from "../../routes/static_routes";
+import staticRoutes from "Routes/static_routes";
 
-import { userLoginAsync } from '../../redux/asyncActions/authAsyncActions';
+import { userLoginAsync } from 'Redux/asyncActions/authAsyncActions';
 
 import { 
     getLoginSettingsApi
-} from "../../services/public_api";
+} from "Services/public_api";
 
 import useStyles from "./styles";
-import useInput from "../../custom_hooks/useInput";
-import useInputPass from "../../custom_hooks/useInputPass";
+import useInput from "Custom_hooks/useInput";
+import useInputPass from "Custom_hooks/useInputPass";
 
 import ReCAPTCHA from "react-google-recaptcha";
-import { getRecaptchaInvisiblePublicKey } from "../../config/google_config";
+import { getRecaptchaInvisiblePublicKey } from "Config/google_config";
 
 function Login() {
-    const pageTitle = "Login";
+    const pageTitle = staticRoutes.member.name;
     const classes = useStyles();
     const recaptchaRef = React.createRef();
 
@@ -76,7 +76,7 @@ function Login() {
     useEffect(() => {
         document.title = pageTitle;
         fetchData();
-    }, [fetchData]);
+    }, [fetchData, pageTitle]);
 
     if (loaded === null) {
         return (

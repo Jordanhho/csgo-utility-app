@@ -13,22 +13,22 @@ import Paper from '@material-ui/core/Paper';
 import ReCAPTCHA from "react-google-recaptcha";
 import { 
     getRecaptchaInvisiblePublicKey
- } from "../../config/google_config";
+ } from "Config/google_config";
 
-import staticRoutes from "../../routes/static_routes";
+import staticRoutes from "Routes/static_routes";
 
 import {
     sendResetPasswordEmailApi,
     verifyResetPasswordCodeApi,
     resetPasswordApi
-} from "../../services/auth_api";
+} from "Services/auth_api";
 
 import useStyles from "./styles";
-import useInput from "../../custom_hooks/useInput";
-import useInputPass from "../../custom_hooks/useInputPass";
+import useInput from "Custom_hooks/useInput";
+import useInputPass from "Custom_hooks/useInputPass";
 
 function ForgotPassword() {
-    const pageTitle = "Change Password"
+    const pageTitle = staticRoutes.member.login.forgotPassword;
     const classes = useStyles();
     const recaptchaRef = React.createRef();
 
@@ -112,7 +112,6 @@ function ForgotPassword() {
         }
     }
 
-
     // handle verification of token
     async function handleResetPassword(e) {
         e.preventDefault();
@@ -146,7 +145,7 @@ function ForgotPassword() {
 
     useEffect(() => {
         document.title = pageTitle;
-    }, []);
+    }, [pageTitle]);
 
     return (
         <Container component="main" maxWidth="xs">

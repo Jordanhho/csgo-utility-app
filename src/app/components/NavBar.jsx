@@ -13,13 +13,14 @@ import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import PersonalLogo from "../assets/img/personal_logo.png";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+
+import PersonalLogo from "Assets/img/personal_logo.png";
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -29,7 +30,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
     userLogoutAsync
-} from "../redux/asyncActions/authAsyncActions";
+} from "Redux/asyncActions/authAsyncActions";
 
 const useStyles = makeStyles((theme) => ({
     root: {

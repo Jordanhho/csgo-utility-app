@@ -9,7 +9,7 @@ import {
 
 import {
     getUtilScaledLocation
-} from "../../utility/map_scaling_utils";
+} from "Utility/map_scaling_utils";
 
 
 import useStyles from "./styles";

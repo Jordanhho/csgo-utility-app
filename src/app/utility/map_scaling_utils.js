@@ -1,5 +1,4 @@
 //to scale location of icons from 1000x1000 map size to whatever the screen size is
-
 export const MAP_WIDTH_PX = 1000;
 export const MAP_HEIGHT_PX = 1000;
 

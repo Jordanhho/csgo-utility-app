@@ -25,6 +25,7 @@ The application uses the following npm packages:
 - react-dom
 - react-router-dom
 - react-cookie
+- react-app-rewired
 
 ### Redux:
 - react-redux
@@ -49,6 +50,8 @@ Material UI:
 - moment
 - axios
 - react-html-parser
+- babel-plugin-module-resolver
+- customize-cra
 
 ## Requirements
 This project is meant to be paired with the personal website backend in order to load apis. However, the website can still be run.
@@ -70,8 +73,14 @@ It has been developed targeted towards Chrome Browsers desktops.
 ```
 
 ## to build static files
-1. Build reactjs 
+1. Build reactjs when on linux VM:
 ``` 
-    $ INLINE_RUNTIME_CHUNK=false npm run build
+    $ INLINE_RUNTIME_CHUNK=false npm run build-rewired-linux
 ```
+Or build on windows dev ENV
+
+``` 
+    $ npm run build-rewired-windows
+```
+
 2. The built app will be at /build

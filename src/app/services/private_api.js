@@ -2,12 +2,12 @@ import axios from "axios";
 
 import {
     handleApi
-} from "./api_utility";
+} from "Services/api_utility";
 
 import {
     API_URL,
     privateApiRoutes
-} from "../routes/api_routes";
+} from "Routes/api_routes";
 
 //* Get Admin Home */
 export async function getAdminSettingsApi(data) {

@@ -6,16 +6,16 @@ import Container from '@material-ui/core/Grid';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import Loader from "../../components/Loader";
 import Button from '@material-ui/core/Button';
 
-import TitleBanner from "../../components/TitleBanner";
-import staticRoutes from "../../routes/static_routes";
+import TitleBanner from "Components/TitleBanner";
+import Loader from "Components/Loader";
 
+import staticRoutes from "Routes/static_routes";
 
 import {
     getMapsApi
-} from "../../services/public_api";
+} from "Services/public_api";
 
 import useStyles from "./styles";
 
@@ -118,7 +118,7 @@ function Maps() {
                                             <Typography variant="h4" color="primary">
                                                 {mapDetails.map_name}
                                             </Typography>
-                                            <Button href={staticRoutes.main.mapTemplate(mapDetails.map_id)} className={classes.map_link} key={index}>
+                                            <Button href={staticRoutes.main.mapTemplate(mapDetails.map_id)} className={classes.map_link} key={`map-link-${index}`}>
                                                 <img
                                                     src={mapDetails.cloudfront_map_url}
                                                     className={classes.displayMapSize}

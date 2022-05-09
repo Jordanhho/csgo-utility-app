@@ -1,38 +1,41 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import {
     userLoginSuccess
-} from "../redux/actions/authActions";
-
+} from "Redux/actions/authActions";
 import {
     userLogoutAsync
-} from "../redux/asyncActions/authAsyncActions";
+} from "Redux/asyncActions/authAsyncActions";
 
 import moment from 'moment';
+
 import Container from '@material-ui/core/Grid';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import staticRoutes from "../routes/static_routes";
-import Copyright from "../components/Copyright";
-import Loader from "../components/Loader";
-import MainLayout from "./main/MainLayout";
-import LoginLayout from "./auth/LoginLayout";
 
-import NotFound from "./NotFound";
+import staticRoutes from "Routes/static_routes";
+
+import Copyright from "Components/Copyright";
+import Loader from "Components/Loader";
+
+import MainLayout from "Main_view/MainLayout";
+import LoginLayout from "Auth_view/LoginLayout";
+
+import NotFound from "Views/NotFound";
 
 import {
     verifyLoginSessionApi,
     setAccessTokenApi
-} from '../services/auth_api';
+} from 'Services/auth_api';
 
-import useStyles from "./main/styles";
+import useStyles from "Views/main/styles";
 
 function AppLayout() {
 
     const classes = useStyles();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [loaded, setLoaded] = useState(null);
     const dispatch = useDispatch();
     const authObj = useSelector(state => state.auth);
@@ -78,12 +81,12 @@ function AppLayout() {
 
             setAccessToken(authObj.accessToken);
 
-            //redirect to whereever you are currently at 
+            //redirect to whereever you are currently at
 
             // //redirect to home page
-            // history.push(staticRoutes.main.home);
+            // navigate(staticRoutes.main.abs);
         }
-    }, [authObj, history, sessionTimeoutTimer, setAccessToken, verifyLogin]);
+    }, [authObj, navigate, sessionTimeoutTimer, setAccessToken, verifyLogin]);
 
     if (loaded === null) {
         return (
@@ -111,20 +114,19 @@ function AppLayout() {
         );
     }
 
-
     return (
         <div>
-            <Switch>
+            <Routes>
                 <Route
-                    path={staticRoutes.member.login}
-                    component={LoginLayout}
+                    path={staticRoutes.member.login.layoutLink}
+                    element={<LoginLayout />}
                 />
                 <Route
-                    path={staticRoutes.main.home}
-                    component={MainLayout}
+                    path={staticRoutes.main.layoutLink}
+                    element={<MainLayout />}
                 />
-                <Route component={NotFound} />
-            </Switch>
+                <Route element={<NotFound />} />
+            </Routes>
 
             <Box mt={8}>
                 <Copyright />
