@@ -39,12 +39,12 @@ function Home() {
 
     const fetchData = useCallback(async () => {
         const result = await getHomeApi();
-        if(result.error) {
-            setLoaded(false);
-        }
-        else {
+        if(!result.error) {
             setData(result.data);
             setLoaded(true);
+        }
+        else {
+            setLoaded(false);
         }
     }, []);
     
@@ -147,7 +147,7 @@ function Home() {
                                         <Button
                                             variant="outlined"
                                             color="primary"
-                                            href={staticRoutes.main.maps}
+                                            href={staticRoutes.main.maps.abs}
                                             className={classes.button}
                                         >
                                             View Maps

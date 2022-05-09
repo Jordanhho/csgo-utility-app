@@ -195,7 +195,7 @@ function ForgotPassword() {
                                 </Grid>
                                 <Grid container justify="flex-end">
                                     <Grid item>
-                                        <Link href={staticRoutes.member.login} variant="body2">
+                                        <Link href={staticRoutes.member.login.abs} variant="body2">
                                             Already have an account? Sign in
                                         </Link>
                                     </Grid>
@@ -343,7 +343,7 @@ function ForgotPassword() {
                             <Grid container justify="flex-end" spacing={2}>
                                 <Grid item xs={6} >
                                     <Button
-                                        href={staticRoutes.member.login}
+                                        href={staticRoutes.member.login.abs}
                                         fullWidth
                                         color="primary"
                                         startIcon={<ArrowBackIosIcon />}

@@ -156,7 +156,7 @@ function SiguUp() {
           
                                 <Grid container justify="center">
                                     <Grid item>
-                                        <Link href={staticRoutes.member.login} variant="body2">
+                                        <Link href={staticRoutes.member.login.abs} variant="body2">
                                             Already have an account? Sign in
                                         </Link>
                                     </Grid>

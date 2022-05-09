@@ -33,14 +33,6 @@ function MainLayout() {
                 <Maps />
             )
         },
-        {
-            to: currPaths.mapWithUtils.abs,
-            path: currPaths.mapWithUtils.relLink,
-            name: currPaths.mapWithUtils.name,
-            element: (
-                <MapDetail />
-            )
-        },
     ];
 
     return (
@@ -60,6 +52,10 @@ function MainLayout() {
                         />
                     )
                 })}
+                <Route
+                    path={currPaths.mapDetail.relLink}
+                    element={<MapDetail/>}
+                />
             </Routes>
         </div>
     )

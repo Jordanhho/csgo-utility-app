@@ -5,24 +5,23 @@ const staticRoutes = {
         abs: '/',
         relLink: '/',
         layoutLink: '/*',
-
         maps: {
             name: 'Maps',
             abs: '/maps',
             relLink: '/maps',
         },
-        mapWithUtils: {
+        mapDetail: {
             name: 'Map Util',
-            abs: '/map/:map_id/:util_id?',
-            relLink: '/map/:map_id/:util_id?',
-        },
-        utilDetail: {
-            name: 'Util Details',
-            abs: '/map/:map_id/:util_id',
-            relLink: '/map/:map_id/:util_id',
+            abs: '/map/:map_id',
+            relLink: '/map/:map_id/*',
+            utilDetail: {
+                name: 'Util Details',
+                abs: '/map/:map_id/:util_id',
+                relLink: ':util_id',
+            },
+            utilTemplate: (map_id, util_id) => `/map/${map_id}/${util_id}`,
         },
         mapTemplate: (map_id) => `/map/${map_id}`,
-        utilTemplate: (map_id, util_id) => `/map/${map_id}/${util_id}`,
     },
     member: {
         name: 'Member',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate, Route, Routes  } from "react-router-dom";
+import { useParams, useNavigate, Route, Routes, useLocation  } from "react-router-dom";
 
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -36,7 +36,7 @@ function MapDetail() {
 
     async function handleUtilOnClick(util_id) {
         //cahnge to util id path
-        navigate(staticRoutes.main.utilTemplate(map_id, util_id));
+        navigate(staticRoutes.main.mapDetail.utilTemplate(map_id, util_id));
 
         //scroll to section
         utilDetailRef.current.scrollIntoView({ behavior: 'smooth', block: "end"});
@@ -58,20 +58,21 @@ function MapDetail() {
         const mapResult = await getPublicMapDetailApi({map_id: map_id});
 
         //load map result
-        if (mapResult.data) {
+        if (!mapResult.error) {
             setData(mapResult.data);
             setLoaded(true);
         }
         else {
             setLoaded(false);
         }
-    }, [map_id,]);
+    }, [map_id]);
 
     useEffect(() => {
         document.title = pageTitle;
         fetchData();
     }, [fetchData, pageTitle]);
 
+    const location = useLocation();
     if (loaded === null) {
         return (
             <Container>
@@ -98,6 +99,7 @@ function MapDetail() {
             </div>
         );
     }
+
     return (
         <Container>
             <TitleBanner title={mapDetail.map_name + " Utilities"} />
@@ -136,7 +138,7 @@ function MapDetail() {
             
             <Routes>
                 <Route
-                    path={staticRoutes.main.utilDetail.relLink}
+                    path={staticRoutes.main.mapDetail.utilDetail.relLink}
                     element={
                         <Grid
                             container

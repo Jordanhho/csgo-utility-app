@@ -4,7 +4,6 @@ import { CookiesProvider } from "react-cookie";
 import theme from 'Theme/theme';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import {
-    Route,
     BrowserRouter
 } from "react-router-dom";
 

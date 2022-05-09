@@ -33,12 +33,12 @@ function Maps() {
 
     const fetchData = useCallback(async () => {
         const result = await getMapsApi();
-        if (result.error) {
-            setLoaded(false);
-        }
-        else {
+        if (!result.error) {
             setData(result.data);
             setLoaded(true);
+        }
+        else {
+            setLoaded(false);
         }
     }, []);
 
@@ -111,19 +111,19 @@ function Maps() {
                             justify="center"
                             alignItems="center"
                         >
-                            {mapsData.maps.map((mapDetails, index) => (
+                            {mapsData.maps.map((mapDetail, index) => (
                                 <Paper className={classes.paper} key={index}>
                                     <Box p={3} className={classes.center}>
                                         <Grid item xs={12}>
                                             <Typography variant="h4" color="primary">
-                                                {mapDetails.map_name}
+                                                {mapDetail.map_name}
                                             </Typography>
-                                            <Button href={staticRoutes.main.mapTemplate(mapDetails.map_id)} className={classes.map_link} key={`map-link-${index}`}>
+                                            <Button href={staticRoutes.main.mapTemplate(mapDetail.map_id)} className={classes.map_link} key={`map-link-${index}`}>
                                                 <img
-                                                    src={mapDetails.cloudfront_map_url}
+                                                    src={mapDetail.cloudfront_map_url}
                                                     className={classes.displayMapSize}
                                                
-                                                    alt={mapDetails.map_name}
+                                                    alt={mapDetail.map_name}
                                                 />
                                             </Button>
                                         </Grid>

@@ -36,7 +36,7 @@ function UtilDetail(props) {
         const result = await getPublicUtilDetailApi({ util_id: util_id });
 
         //load map result
-        if (result.data) {
+        if (!result.error) {
             setData(result.data);
             setLoaded(true);
         }

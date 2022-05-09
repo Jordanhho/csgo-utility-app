@@ -64,12 +64,12 @@ function Login() {
 
     const fetchData = useCallback(async () => {
         const result = await getLoginSettingsApi();
-        if (result.error) {
-            setLoaded(false);
-        }
-        else {
+        if (!result.error) {
             setData(result.data);
             setLoaded(true);
+        }
+        else {
+            setLoaded(false);
         }
     }, []);
 
@@ -165,7 +165,7 @@ function Login() {
                                {(loginSettings.enable_change_password &&
                                     <Grid item xs>
                                         <Link
-                                            href={staticRoutes.member.forgotPassword}
+                                            href={staticRoutes.member.forgotPassword.abs}
                                             variant="body2"
                                             className={classes.link}
                                         >
@@ -177,7 +177,7 @@ function Login() {
                                 {(loginSettings.enable_new_accounts &&
                                     <Grid item>
                                         <Link
-                                            href={staticRoutes.member.signUp}
+                                            href={staticRoutes.member.signUp.abs}
                                             variant="body2"
                                             className={classes.link}
                                         >
